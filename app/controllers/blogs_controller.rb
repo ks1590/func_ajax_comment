@@ -5,6 +5,8 @@ class BlogsController < ApplicationController
   # GET /blogs.json
   def index
     @blogs = Blog.all
+    @blog = Blog.new
+    # @blog_edit = Blog.find(params[:id])
   end
 
   # GET /blogs/1
@@ -21,17 +23,21 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1/edit
   def edit
+    respond_to do |format|
+      format.js { render :edit }
+    end
   end
 
   # POST /blogs
   # POST /blogs.json
   def create
+    @blogs = Blog.all
     @blog = Blog.new(blog_params)
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
-        format.json { render :show, status: :created, location: @blog }
+        format.html { redirect_to blogs_path, notice: 'Blog was successfully created.' }
+        format.json { render :index, status: :created, location: @blog }
       else
         format.html { render :new }
         format.json { render json: @blog.errors, status: :unprocessable_entity }

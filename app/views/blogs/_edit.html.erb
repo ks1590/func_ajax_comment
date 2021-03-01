@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">新規作成</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">編集</button>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -10,23 +10,31 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= form_with(model: [blog, comment]) do |form| %>
-          <% if comment.errors.any? %>
+        <%= form_with(model: blog) do |form| %>
+          <% if blog.errors.any? %>
             <div id="error_explanation">
-              <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+              <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+
               <ul>
-              <% comment.errors.full_messages.each do |message| %>
+              <% blog.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
               <% end %>
               </ul>
             </div>
           <% end %>
+
           <div class="field">
-            <%= form.text_area :content, id: "comment_content_#{blog.id}" %>
-            <%= form.label :content %>
+            <%= form.label :title, class: "col-form-label" %>
+            <%= form.text_field :title, class: "form-control" %>
           </div>
+
+          <div class="field">
+            <%= form.label :content, class: "col-form-label"  %>
+            <%= form.text_area :content, class: "form-control" %>
+          </div>
+
           <div class="actions">
-            <%= form.submit %>
+            <%= form.submit "作成する", class: "btn btn-primary" %>
           </div>
         <% end %>
       </div>
