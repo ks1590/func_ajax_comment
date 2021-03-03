@@ -1,0 +1,8 @@
+<% @users.each do |user| %>
+  <tr>        
+    <td><%= link_to user.id, edit_user_path(user), remote: true %></td>
+    <td><%= link_to user.name, edit_user_path(user), remote: true %></td>
+    <td><%= link_to user.created_at, edit_user_path(user), remote: true %></td>
+    <td><%= link_to user.updated_at, edit_user_path(user), remote: true %></td>
+  </tr>
+<% end %>

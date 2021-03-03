@@ -1,0 +1,8 @@
+<% if @status == 'success' %>
+  $("tbody").empty();
+  $("tbody").html("<%= j(render("list")) %>");
+<%  elsif @status == 'fail' %>
+    alert('error!');
+<% end %>
+// modal-formを消す
+$("#user-modal").modal("hide");
