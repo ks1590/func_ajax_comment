@@ -29,7 +29,7 @@
       <% if controller.action_name == "edit" %>
         <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary"  %>
       <% end %>
-      <%= link_to 'New Team', new_team_path, remote: true, class: "btn btn-outline-secondary" %>
+      <%= link_to 'Team一覧', teams_path, remote: true, class: "btn btn-outline-secondary" %>
       <div id="team-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     </div>
 
